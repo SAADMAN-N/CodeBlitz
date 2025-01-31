@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "@codemirror-toolkit/react": "^0.7.1",
+    "@codemirror/autocomplete": "^6.18.4",
     "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lint": "^6.8.4",
     "@codemirror/state": "^6.5.1",
     "@codemirror/theme-one-dark": "^6.1.2",
     "@codemirror/view": "^6.36.2",
@@ -14,8 +16,10 @@
     "cra-template": "1.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-resizable": "^3.0.5",
     "react-router-dom": "^7.1.4",
     "react-scripts": "5.0.1",
+    "react-split": "^2.0.14",
     "socket.io-client": "^4.8.1"
   },
   "scripts": {

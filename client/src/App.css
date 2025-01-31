@@ -1,38 +1,46 @@
 .App {
-  text-align: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Change the background color of the entire app */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.LeftPane {
+  height: 100vh; /* Make the left pane take up the full height of the page */
+  background-color: #ffffff; /* Background color for the left pane */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.CodeEditorContainer {
+  height: 100vh; /* Make the container take up the full height of the page */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
+.CodeMirror {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%; /* Make the code editor take up the full width of the container */
+  height: 100%; /* Make the code editor take up the full height of the container */
+  background-color: #2e3440; /* Change the background color of the code editor */
+  color: #d8dee9; /* Change the text color for better contrast */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.split {
+  display: flex;
+  height: 100vh;
+}
+
+.split > div {
+  flex: 1;
+}
+
+.split > .gutter {
+  background-color: #ddd;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.split > .gutter.gutter-horizontal {
+  cursor: col-resize;
 }

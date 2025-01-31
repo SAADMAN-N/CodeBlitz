@@ -1,11 +1,12 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import { create } from '@codemirror-toolkit/react';
+import React, { useState, useEffect } from 'react';
+import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { oneDark } from '@codemirror/theme-one-dark';
+import { autocompletion } from '@codemirror/autocomplete';
+import { lintGutter, linter } from '@codemirror/lint';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 
-const { setContainer, setConfig } = create();
 const socket = io('http://localhost:5000');
 
 const CodeEditor = () => {
@@ -36,19 +37,16 @@ const CodeEditor = () => {
     }
   };
 
-  const ref = useCallback((node) => {
-    setContainer(node);
-    if (node) {
-      setConfig({
-        doc: code,
-        extensions: [javascript(), oneDark],
-      });
-    }
-  }, [code]);
-
   return (
-    <div>
-      <div ref={ref} style={{ height: '200px' }} />
+    <div className="CodeEditorContainer">
+      <CodeMirror
+        value={code}
+        height="100%"
+        extensions={[javascript(), oneDark, autocompletion(), lintGutter(), linter()]}
+        onChange={(value) => {
+          setCode(value);
+        }}
+      />
       <button onClick={runCode}>Run</button>
       <pre>{output}</pre>
     </div>

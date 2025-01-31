@@ -1,26 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Split from 'react-split';
 import CodeEditor from './components/CodeEditor';
-import Login from './components/Login';
-import Register from './components/Register';
-import SkillSelection from './components/SkillSelection';
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <header className="App-header">
-          <h1>CodeBlitz</h1>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/skills" element={<SkillSelection />} />
-            <Route path="/" element={<CodeEditor />} />
-          </Routes>
-        </header>
+    <Split
+      sizes={[50, 50]}
+      minSize={100}
+      expandToMin={false}
+      gutterSize={10}
+      gutterAlign="center"
+      snapOffset={30}
+      dragInterval={1}
+      direction="horizontal"
+      cursor="col-resize"
+      className="split"
+    >
+      <div className="LeftPane">
+        {/* Left pane content can go here */}
       </div>
-    </Router>
+      <div className="CodeEditorContainer">
+        <CodeEditor />
+      </div>
+    </Split>
   );
 }
 

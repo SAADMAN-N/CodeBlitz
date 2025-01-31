@@ -20,7 +20,8 @@ const io = new Server(server, {
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/codeblitz', { useNewUrlParser: true, useUnifiedTopology: true });
+// Replace the connection string with your MongoDB Atlas connection string
+mongoose.connect('mongodb+srv://SharfySharf:iPhone13pm!@codeblitz.4mbdb.mongodb.net/?retryWrites=true&w=majority&appName=CodeBlitz', { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use('/api', runRoute);
 app.use('/api', matchRoute);
