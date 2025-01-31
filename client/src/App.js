@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Split from 'react-split';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CodeEditor from './components/CodeEditor';
 import './App.css';
 
 function App() {
+  const codeEditorRef = useRef(null);
+
+  const handleRunCode = () => {
+    if (codeEditorRef.current) {
+      codeEditorRef.current.runCode();
+    }
+  };
+
   return (
     <div className="App">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <div className="Navbar">
-        <button className="NavbarButton">
+        <button className="NavbarButton" onClick={handleRunCode}>
           <i className="fas fa-play" style={{ color: 'white', marginRight: '10px' }}></i>
           Run
         </button>
@@ -48,7 +71,9 @@ function App() {
               <div className="EditorHeader">
                 <span className="CodeIcon">{'</>'}</span> Code
               </div>
-              {/* Editor content can go here */}
+              <div className="CodeEditorContainer">
+                <CodeEditor ref={codeEditorRef} />
+              </div>
             </div>
             <div className="TestingPane">
               <div className="TestingHeader">
