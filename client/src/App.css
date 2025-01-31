@@ -1,46 +1,194 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #000000; /* Set background color to black */
+  overscroll-behavior: none; /* Prevent overscroll behavior */
+}
+
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
   height: 100vh;
-  background-color: #f0f0f0; /* Change the background color of the entire app */
+  background-color: #000000; /* Full black background behind the panes */
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif; /* Apply the new font */
+}
+
+.Navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: transparent; /* Transparent background for the navbar */
+  color: #fff; /* White text color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to make the navbar pop out */
+}
+
+.NavbarButton {
+  margin: 0 5px; /* Very small gap between buttons */
+  padding: 8px 16px; /* Slightly bigger padding for the buttons */
+  background-color: #222222; /* Darker background for the buttons */
+  color: #fff; /* White text color for Run button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Slightly bigger font size for the buttons */
+  font-weight: bold; /* Increase font weight */
+  font-family: 'Roboto', sans-serif; /* Apply the new font */
+}
+
+.NavbarButton i {
+  margin-right: 10px; /* Increase spacing between icon and text */
+}
+
+.NavbarButton:hover {
+  background-color: #777777; /* Lighter background on hover */
+}
+
+.split-horizontal {
+  display: flex;
+  width: 98.5%; /* Adjust width to reduce space on the sides */
+  height: calc(100vh - 80px); /* Adjust height to account for navbar */
+  border-radius: 10px; /* Rounded corners for the split container */
+  overflow: hidden;
+}
+
+.split-vertical {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.gutter {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  position: relative;
+}
+
+.gutter-horizontal {
+  cursor: col-resize;
+  width: 5px; /* Smaller width for the horizontal gutter */
+}
+
+.gutter-horizontal::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 20px;
+  background-color: #ccc; /* Color of the line */
+}
+
+.gutter-vertical {
+  cursor: row-resize;
+  height: 5px; /* Smaller height for the vertical gutter */
+}
+
+.gutter-vertical::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px; /* Adjust the width of the line */
+  height: 2px; /* Make the line horizontal */
+  background-color: #ccc; /* Color of the line */
+}
+
+.LeftPane, .RightPane {
+  height: 98.6%;
+  overflow: hidden; /* Remove scrolling */
+  border-radius: 10px; /* Rounded corners for the panes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to make the panes pop out */
 }
 
 .LeftPane {
-  height: 100vh; /* Make the left pane take up the full height of the page */
-  background-color: #ffffff; /* Background color for the left pane */
+  background-color: #232323; /* Dark background color for the left pane */
 }
 
-.CodeEditorContainer {
-  height: 100vh; /* Make the container take up the full height of the page */
+.RightPane {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 20px;
-  box-sizing: border-box;
+  height: 98.6%; /* Match the height of the LeftPane */
+  overflow: hidden; /* Remove scrolling */
+  border-radius: 10px; /* Rounded corners for the pane */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to make the pane pop out */
+  background-color: transparent; /* Transparent background color for the right pane */
 }
 
-.CodeMirror {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%; /* Make the code editor take up the full width of the container */
-  height: 100%; /* Make the code editor take up the full height of the container */
-  background-color: #2e3440; /* Change the background color of the code editor */
-  color: #d8dee9; /* Change the text color for better contrast */
+.EditorPane {
+  height: 50%; /* Take up 50% of the viewing height */
+  overflow: auto;
+  border-radius: 10px; /* Rounded corners for the pane */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to make the pane pop out */
+  background-color: #232323; /* Dark background color for the editor pane */
 }
 
-.split {
+.EditorHeader {
   display: flex;
-  height: 100vh;
+  align-items: center;
+  padding: 10px;
+  background-color: #333333; /* Gray background for the header */
+  color: #fff; /* White text color */
+  font-size: 16px;
+  font-weight: bold;
+  border-top-left-radius: 10px; /* Match the rounded corners of the pane */
+  border-top-right-radius: 10px; /* Match the rounded corners of the pane */
 }
 
-.split > div {
-  flex: 1;
+.CodeIcon {
+  margin-right: 5px;
+  color: rgb(15, 187, 15); /* Green color for the code icon */
 }
 
-.split > .gutter {
-  background-color: #ddd;
-  background-repeat: no-repeat;
-  background-position: 50%;
+.TestingPane {
+  height: 50%; /* Take up 50% of the viewing height */
+  overflow: auto;
+  border-radius: 10px; /* Rounded corners for the pane */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to make the pane pop out */
+  background-color: #232323; /* Dark background color for the testing pane */
 }
 
-.split > .gutter.gutter-horizontal {
-  cursor: col-resize;
+.TestingHeader {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #333333; /* Gray background for the header */
+  color: #fff; /* White text color */
+  font-size: 16px;
+  font-weight: bold;
+  border-top-left-radius: 10px; /* Match the rounded corners of the pane */
+  border-top-right-radius: 10px; /* Match the rounded corners of the pane */
+}
+
+.TestingIcon {
+  margin-right: 5px;
+  color: rgb(15, 187, 15); /* Green color for the testing icon */
+}
+
+.LeftHeader {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #333333; /* Gray background for the header */
+  color: #fff; /* White text color */
+  font-size: 16px;
+  font-weight: bold;
+  border-top-left-radius: 10px; /* Match the rounded corners of the pane */
+  border-top-right-radius: 10px; /* Match the rounded corners of the pane */
+}
+
+.LeftIcon {
+  margin-right: 5px;
+  color: rgb(15, 187, 15); /* Green color for the left icon */
 }
